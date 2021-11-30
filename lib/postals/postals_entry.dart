@@ -8,7 +8,6 @@ import "package:image_picker/image_picker.dart";
 import '../avatar.dart';
 import "../utils.dart" as utils;
 import 'package:location/location.dart';
-import 'map.dart';
 import "postals_db_worker.dart";
 import "postals_model.dart" show PostalsModel, postalsModel;
 import 'package:image/image.dart' as img;
