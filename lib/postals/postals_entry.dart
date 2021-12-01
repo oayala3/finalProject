@@ -50,12 +50,10 @@ class PostalsEntry extends StatelessWidget {
     var start;
     print(postalsModel.entityBeingEdited.location.toString());
     if(postalsModel.entityBeingEdited.location!=null){
-      print("not null");
       start = CameraPosition(
           target: LatLng(double.parse(postalsModel.entityBeingEdited.location.split(":")[3]),double.parse(postalsModel.entityBeingEdited.location.split(":")[1])),
           zoom: 11.5);
     }else{
-      print("VERY null");
       start = CameraPosition(
           target: LatLng(37,-122),
           zoom: 11.5);
@@ -118,6 +116,11 @@ class PostalsEntry extends StatelessWidget {
                                 child : Text("Cancel"),
                                 onPressed : () {
                                   File image = File(join(Avatar.docsDir.path, "image"));
+                                  if (image.existsSync() == false) {
+                                    if (inModel.entityBeingEdited != null && inModel.entityBeingEdited.id != null) {
+                                      image = File(join(Avatar.docsDir.path, inModel.entityBeingEdited.id.toString()));
+                                    }
+                                  }
                                   if (image.existsSync()) {
                                     image.deleteSync();
                                   }

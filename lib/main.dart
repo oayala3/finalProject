@@ -31,12 +31,12 @@ class FlutterBook extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        theme: ThemeData(primarySwatch: Colors.blue),
+        theme: ThemeData(primarySwatch: Colors.grey),
         home: DefaultTabController(
             length: 1,
             child: Scaffold(
                 appBar: AppBar(
-                    title: Text('Oscar Ayala FlutterBook'),
+                    title: Text('Postal Share'),
                     bottom: TabBar(
                         tabs: [
                           Tab(icon: Icon(Icons.assignment_turned_in), text: 'Postals'),

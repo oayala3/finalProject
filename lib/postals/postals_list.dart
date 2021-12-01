@@ -1,5 +1,9 @@
+import 'dart:convert';
 import "dart:io";
+import 'dart:typed_data';
 import "package:flutter/material.dart";
+import 'package:flutter/services.dart';
+import 'package:path_provider/path_provider.dart';
 import "package:scoped_model/scoped_model.dart";
 import "package:flutter_slidable/flutter_slidable.dart";
 import "package:intl/intl.dart";
@@ -9,6 +13,7 @@ import "../utils.dart" as utils;
 import "postals_db_worker.dart";
 import "postals_model.dart" show Postal, PostalsModel, postalsModel;
 import 'package:gallery_view/gallery_view.dart';
+import 'package:share/share.dart';
 
 class PostalsList extends StatelessWidget {
   Widget build(BuildContext inContext) {
@@ -28,10 +33,11 @@ class PostalsList extends StatelessWidget {
                     postalsModel.setChosenDate(null);
                     postalsModel.setStackIndex(1);
                   }),
-              body: GridView.builder(
+              body: Container(
+                  color: Colors.black,
+              child:GridView.builder(
                   itemCount: postalsModel.entityList.length,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3,),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, crossAxisSpacing: 0 ),
                   itemBuilder: (BuildContext inContext, index) {
                     Postal postal = postalsModel.entityList[index];
                     return Column(children: [
@@ -71,11 +77,17 @@ class PostalsList extends StatelessWidget {
                                 color : Colors.red,
                                 icon : Icons.delete,
                                 onTap : () => _deleteContact(inContext, postal)
+                            ),
+                            IconSlideAction(
+                                caption : "Share",
+                                color : Colors.blueAccent,
+                                icon : Icons.share,
+                                onTap : () => _sharePostal(postal)
                             )
                           ]
                       )
                     ]);
-                  }));
+                  })));
         }));
   }
 
@@ -114,5 +126,21 @@ class PostalsList extends StatelessWidget {
                     })
               ]);
         });
+  }
+  Future _sharePostal(Postal inContact) async {
+    File  avatarFile= File(join(Avatar.docsDir.path, inContact.id.toString()));
+    Uint8List imagebyte = avatarFile.readAsBytesSync();
+    final temp = await getTemporaryDirectory();
+    final path = '${temp.path}/image1.jpg';
+    File(path).writeAsBytesSync(imagebyte.buffer.asUint8List());
+    await Share.shareFiles([path], text: 'Postal Description: ${inContact.description}, Postal Location: ${inContact.location}, Postal date: ${inContact.time}');
+  }
+
+  Future<Image> convertFileToImage(File picture) async {
+    List<int> imageBase64 = picture.readAsBytesSync();
+    String imageAsString = base64Encode(imageBase64);
+    Uint8List uint8list = base64.decode(imageAsString);
+    Image image = Image.memory(uint8list);
+    return image;
   }
 }
