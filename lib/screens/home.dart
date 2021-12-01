@@ -20,16 +20,63 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey,
       body: AnimatedBackground(
         behaviour: BubblesBehaviour(
           options: _bubbleOptions,
         ),
         vsync: this,
-        child: Container(
-          alignment: Alignment.center,
-          child: const Text('Postal Share, a new way to share locations'),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          //crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.black,
+                shape: BoxShape.rectangle,
+                border: Border.all(
+                  color: Colors.purple,
+                  width: 2.0,
+                ),
+              ),
+              child: Column(
+                children: [
+                  RichText(
+                    textAlign: TextAlign.left,
+                    text: TextSpan(
+                      style: DefaultTextStyle.of(context).style,
+                      children: const <TextSpan>[
+                        TextSpan(text: 'Welcome to ', style: TextStyle(fontSize: 30, color: Colors.white)),
+                      ],
+                    ),
+                  ),
+                  RichText(
+                    text: TextSpan(
+                      style: DefaultTextStyle.of(context).style,
+                      children: const <TextSpan>[
+                        TextSpan(text: 'Postal Share!', style: TextStyle(fontSize: 40, color: Colors.white, fontWeight: FontWeight.bold)),
+                      ],
+                    ),
+                  ),
+                  RichText(
+                    text: TextSpan(
+                      style: DefaultTextStyle.of(context).style,
+                      children: const <TextSpan>[
+                        TextSpan(text: 'A new way of sharing your location', style: TextStyle(fontSize: 20, color: Colors.white)),
+                      ],
+                    ),
+                  ),
+                ],
+              )
+            )
+          ],
         ),
       ),
     );
   }
 }
+
+/*
+
+
+ */
