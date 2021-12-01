@@ -1,11 +1,11 @@
 import "dart:io";
 import "package:flutter/material.dart";
+import 'package:untitled/screens/home.dart';
 import 'avatar.dart';
 import "postals/postals.dart";
 import "utils.dart" as utils;
 import 'package:path_provider/path_provider.dart';
 
-//joto
 void main() async {
   startMeUp() async {
     WidgetsFlutterBinding.ensureInitialized();
@@ -75,8 +75,8 @@ class MyStatelessWidget extends StatelessWidget {
       scrollDirection: Axis.vertical,
       controller: controller,
       children: <Widget>[
-        const Center(
-          child: Text('First Page'),
+        Center(
+          child: MyHomePage(title: 'Animated Background Demo'),
         ),
         Center(
           child: FlutterBook(),
