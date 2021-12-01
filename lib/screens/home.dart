@@ -20,9 +20,8 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomAppBar(
+      bottomNavigationBar: const BottomAppBar(
         color: Colors.transparent,
-        //child: Icon(Icons.arrow_circle_down, size: 80.0,),
         child: MyBlinkingButton(),
         elevation: 0,
       ),

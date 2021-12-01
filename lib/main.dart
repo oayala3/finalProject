@@ -1,5 +1,6 @@
 import "dart:io";
 import "package:flutter/material.dart";
+import 'package:untitled/screens/bottom_screen.dart';
 import 'package:untitled/screens/home.dart';
 import 'avatar.dart';
 import "postals/postals.dart";
@@ -82,7 +83,7 @@ class MyStatelessWidget extends StatelessWidget {
           child: FlutterBook(),
         ),
         const Center(
-          child: Text('aver que mamada se me ocurre'),
+          child: BottomScreen(),
         )
       ],
     );
