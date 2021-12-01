@@ -20,6 +20,12 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.transparent,
+        //child: Icon(Icons.arrow_circle_down, size: 80.0,),
+        child: MyBlinkingButton(),
+        elevation: 0,
+      ),
       backgroundColor: Colors.grey,
       body: AnimatedBackground(
         behaviour: BubblesBehaviour(
@@ -62,13 +68,13 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                     text: TextSpan(
                       style: DefaultTextStyle.of(context).style,
                       children: const <TextSpan>[
-                        TextSpan(text: 'A new way of sharing your location', style: TextStyle(fontSize: 20, color: Colors.white)),
+                        TextSpan(text: 'A new way of sharing locations', style: TextStyle(fontSize: 20, color: Colors.white)),
                       ],
                     ),
                   ),
                 ],
               )
-            )
+            ),
           ],
         ),
       ),
@@ -76,7 +82,36 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   }
 }
 
-/*
+class MyBlinkingButton extends StatefulWidget {
+  const MyBlinkingButton({Key key}) : super(key: key);
 
+  @override
+  _MyBlinkingButtonState createState() => _MyBlinkingButtonState();
+}
 
- */
+class _MyBlinkingButtonState extends State<MyBlinkingButton>
+    with SingleTickerProviderStateMixin {
+  AnimationController _animationController;
+
+  @override
+  void initState() {
+    _animationController =
+    AnimationController(vsync: this, duration: const Duration(seconds: 1));
+    _animationController.repeat(reverse: true);
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FadeTransition(
+      opacity: _animationController,
+      child: const Icon(Icons.arrow_downward_sharp, size: 80.0)
+    );
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+}

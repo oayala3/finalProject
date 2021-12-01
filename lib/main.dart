@@ -75,14 +75,14 @@ class MyStatelessWidget extends StatelessWidget {
       scrollDirection: Axis.vertical,
       controller: controller,
       children: <Widget>[
-        Center(
-          child: MyHomePage(title: 'Animated Background Demo'),
+        const Center(
+          child: MyHomePage(title: 'Home page'),
         ),
         Center(
           child: FlutterBook(),
         ),
         const Center(
-          child: Text('Third Page'),
+          child: Text('aver que mamada se me ocurre'),
         )
       ],
     );
