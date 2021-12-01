@@ -5,16 +5,14 @@ import "postals/postals.dart";
 import "utils.dart" as utils;
 import 'package:path_provider/path_provider.dart';
 
-
 void main() async {
   startMeUp() async {
     WidgetsFlutterBinding.ensureInitialized();
     Avatar.docsDir = await getApplicationDocumentsDirectory();
-    runApp(FlutterBook());
+    runApp(const MyApp());
   }
   startMeUp();
 }
-
 
 class _Dummy extends StatelessWidget {
   final _title;
@@ -51,5 +49,45 @@ class FlutterBook extends StatelessWidget {
             )
         )
     ); }  }
+
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      home: Scaffold(
+        body: MyStatelessWidget(),
+      ),
+    );
+  }
+}
+
+class MyStatelessWidget extends StatelessWidget {
+  const MyStatelessWidget({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final PageController controller = PageController(initialPage: 0);
+    return PageView(
+      scrollDirection: Axis.vertical,
+      controller: controller,
+      children: <Widget>[
+        const Center(
+          child: Text('First Page'),
+        ),
+        Center(
+          child: FlutterBook(),
+        ),
+        const Center(
+          child: Text('Third Page'),
+        )
+      ],
+    );
+  }
+}
+
+
 
 
