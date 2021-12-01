@@ -1,5 +1,6 @@
 import "dart:io";
 import "package:flutter/material.dart";
+import 'package:untitled/screens/home.dart';
 import 'avatar.dart';
 import "postals/postals.dart";
 import "utils.dart" as utils;
@@ -75,13 +76,13 @@ class MyStatelessWidget extends StatelessWidget {
       controller: controller,
       children: <Widget>[
         const Center(
-          child: Text('First Page'),
+          child: MyHomePage(title: 'Home page'),
         ),
         Center(
           child: FlutterBook(),
         ),
         const Center(
-          child: Text('Third Page'),
+          child: Text('aver que mamada se me ocurre'),
         )
       ],
     );
