@@ -42,7 +42,7 @@ class _BottomScreenState extends State<BottomScreen> {
         title: const Text('Settings', style: TextStyle(color: Colors.white),),
       ),
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
+        padding: const EdgeInsets.fromLTRB(0, 50, 0, 0),
         child: Column(
           children: [
             Container(
@@ -52,15 +52,59 @@ class _BottomScreenState extends State<BottomScreen> {
                 return Text(
                   getSystemTime(),
                   style: const TextStyle(
-                      fontSize: 70,
+                      fontSize: 75,
                       fontWeight: FontWeight.w700
                   ),
                 );
               }),
             ),
-          ],
+            const Padding(
+              padding: EdgeInsets.fromLTRB(0, 400, 0, 0),
+              child: Text('App made by Oscar Ayala & Sergio Ortiz', style: TextStyle(fontSize: 15),
+            ),
+            )],
         ),
-      )
+      ),
+      drawer: Drawer(
+        child: Container(
+          color: Colors.grey,
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              const DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                ),
+                child: Text('Settings', style: TextStyle(color: Colors.white),),
+              ),
+              ListTile(
+                title: const Text('Privacy Settings'),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                title: const Text('Notifications'),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                title: const Text('Help'),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                title: const Text('About Us'),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          ),
+        )
+      ),
     );
   }
 

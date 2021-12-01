@@ -40,7 +40,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                 color: Colors.black,
                 shape: BoxShape.rectangle,
                 border: Border.all(
-                  color: Colors.purple,
+                  color: Colors.black12,
                   width: 2.0,
                 ),
               ),
